@@ -8,10 +8,17 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class newFile implements Bufferreader {
-    public static void main(String[] args) throws IOException {
+   /* public static void main(String[] args) throws IOException {
         newFile newFile = new newFile();
-      newFile.createXMLfile();
-    }
+        newFile.createXMLfile("Automatico");
+        newFile.createDatFile("Automatico");
+        newFile.createJsontFile("Automatico");
+        newFile.createTxtFile("Automatico");
+        newFile.createTxtFile();
+        newFile.createXMLfile();
+        newFile.createDatFile();
+        newFile.createJsonFile();
+    }*/
 
 
     public  static String directoryPath= "Ficheros/",endData=".dat",endJson=".json",endXml=".xml",endTxt=".txt",date=String.valueOf(LocalDate.now());
@@ -22,7 +29,7 @@ public class newFile implements Bufferreader {
         if(!fileXML.exists())fileXML.createNewFile();
         return fileXML;
     }
-    public  void  createXMLfile()  {
+    public  File createXMLfile()  {
         boolean flag = false;
         File fileXML = null;
         do {
@@ -40,6 +47,7 @@ public class newFile implements Bufferreader {
                 throw new RuntimeException(e);
             }
         } while (!flag);
+        return fileXML;
     }
 
     public File createDatFile(String fileName) throws IOException {
@@ -48,14 +56,14 @@ public class newFile implements Bufferreader {
         return fileDat;
     }
 
-    public  void  createDatFile()  {
+    public  File createDatFile()  {
         boolean flag = false;
         File fileDat = null;
         do {
             try {
                 System.out.println("Introducir el nombre del archivo");
                 String fileName = br.readLine();
-                fileDat = new File(directoryPath + fileName + endXml);
+                fileDat = new File(directoryPath + fileName + endData);
                 if (!fileDat.exists()) fileDat.createNewFile();
                 flag=true;
                 if (fileName.equals(""))throw new EmptyImput();
@@ -66,6 +74,8 @@ public class newFile implements Bufferreader {
                 throw new RuntimeException(e);
             }
         } while (!flag);
+
+       return fileDat;
     }
 
 
@@ -76,12 +86,56 @@ public class newFile implements Bufferreader {
         if(!fileJson.exists())fileJson.createNewFile();
         return fileJson;
     }
+
+    public File createJsonFile()  {
+        boolean flag = false;
+        File jsonFile = null;
+        do {
+            try {
+                System.out.println("Introducir el nombre del archivo");
+                String fileName = br.readLine();
+                jsonFile = new File(directoryPath + fileName + endJson);
+                if (!jsonFile.exists()) jsonFile.createNewFile();
+                flag=true;
+                if (fileName.equals(""))throw new EmptyImput();
+            } catch (EmptyImput e) {
+                System.err.println("Debes introducir un nombre");
+                flag=false;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } while (!flag);
+        return jsonFile;
+    }
+
+
+
     public File createTxtFile(String fileName) throws IOException {
         File fileTxt= new File(directoryPath+fileName+endTxt);
         if(!fileTxt.exists())fileTxt.createNewFile();
         return fileTxt;
     }
 
+    public  File createTxtFile()  {
+        boolean flag = false;
+        File txtFile = null;
+        do {
+            try {
+                System.out.println("Introducir el nombre del archivo");
+                String fileName = br.readLine();
+                txtFile = new File(directoryPath + fileName + endTxt);
+                if (!txtFile.exists()) txtFile.createNewFile();
+                flag=true;
+                if (fileName.equals(""))throw new EmptyImput();
+            } catch (EmptyImput e) {
+                System.err.println("Debes introducir un nombre");
+                flag=false;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } while (!flag);
+        return txtFile;
+    }
 
 
 
