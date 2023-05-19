@@ -20,7 +20,7 @@ public class Write_Read {
 
         newFile newFile = new newFile();
         Write_Read save = new Write_Read();
-        Collections.sort(Arr,(Prueba a ,Prueba b)->a.clasedePrueba.compareTo(b.clasedePrueba));
+        Collections.sort(Arr,(Prueba a ,Prueba b)->a.clasedePrueba.compareToIgnoreCase(b.clasedePrueba));
         File fichero = newFile.createDatFile("Hola");
         save.writeObject(Arr, fichero);
         save.readObject(fichero);
@@ -61,11 +61,11 @@ public class Write_Read {
             if(in !=null){
                 in.close();
             }
-            for (Prueba p: Lista
+            /*for (Prueba p: Lista
                  ) {
                 System.out.println(p);
 
-            }
+            }*/
 
             }
 
